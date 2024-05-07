@@ -1,0 +1,6 @@
+FROM postgres:16
+
+COPY docker-ensure-no-initdb-if-exist.sh /usr/local/bin/docker-ensure-initdb.sh
+RUN rm -f /usr/local/bin/docker-enforce-initdb.sh && ln -sT docker-ensure-initdb.sh /usr/local/bin/docker-enforce-initdb.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
